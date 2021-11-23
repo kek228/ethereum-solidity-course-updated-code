@@ -12,7 +12,7 @@ let accounts;
 beforeEach(async () => {
   // Get a list of all accounts.
   accounts = await web3.eth.getAccounts();
-
+  console.log(`accounts.length = ${accounts.length}`);
   // Use one of those accounts to deploy the contract.
   lottery = await new web3.eth.Contract(abi)
     .deploy({ data: "0x" + evm.bytecode.object })

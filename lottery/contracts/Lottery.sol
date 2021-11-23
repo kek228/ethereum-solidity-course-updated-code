@@ -7,7 +7,8 @@ contract Lottery {
     // function. We therefore need to explicity use the `address payable[]`
     // array type for the players array.
     address public manager;
-    address payable[] public players;
+    // array -> dynamic array (reference type)
+    address payable[] public players; // [] dynamic array, int[3] -> static
 
     // As of Solidity 0.5.0 constructors must be defined using the `constructor`
     // keyword.
@@ -15,9 +16,13 @@ contract Lottery {
     // As of Solidity 0.7.0 visibility (public / external) is not needed for
     // constructors anymore.
     constructor() {
+        // msg object exists every time any contact method invoked by
+        // msg.gas amount of gas current function invocation has available
+        // msg.value eth number in wei, which has been sent with func invocation
         manager = msg.sender;
     }
 
+    // payable -> when func called, some eth might be sent
     function enter() public payable {
         // Note: Although optional, it's a good practice to include error messages
         // in `require` calls.
@@ -29,7 +34,7 @@ contract Lottery {
         // As of Solidity 0.8.0 the global variable `msg.sender` has the type
         // `address` instead of `address payable`. So we must convert msg.sender
         // into `address payable` before we can add it to the players array.
-        players.push(payable(msg.sender));
+        players.push (payable(msg.sender));
     }
 
     function random() private view returns (uint256) {

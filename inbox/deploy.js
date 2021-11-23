@@ -11,13 +11,14 @@ const provider = new HDWalletProvider({
   mnemonic: {
     phrase: mnemonicPhrase
   },
-  providerOrUrl: network
+  providerOrUrl: network // node-url. We use 1 from https://infura.io/dashboard
 });
 
 const web3 = new Web3(provider);
 const message = "Hi there!";
 
 const deploy = async () => {
+  // there are may be many accounts generated with one seed-phrase
   const accounts = await web3.eth.getAccounts();
   console.log("Attempting to deploy from account", accounts[0]);
 

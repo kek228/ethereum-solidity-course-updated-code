@@ -1,8 +1,13 @@
+// does not work with node, but works with npm-test
 const assert = require("assert");
+// ganache eth-chain mocker
 const ganache = require("ganache-cli");
 const Web3 = require("web3");
 const provider = ganache.provider();
+
+// connecting web3 to chain
 const web3 = new Web3(provider);
+// run compilation, of the smart contract
 const { abi, evm } = require("../compile");
 
 const message = "Hi there!";
