@@ -40,10 +40,11 @@ contract Lottery {
     function random() private view returns (uint256) {
         // For an explanation of why `abi.encodePacked` is used here, see
         // https://github.com/owanhunte/ethereum-solidity-course-updated-code/issues/1
+        // solidity does not have random generator
         return
             uint256(
                 keccak256(
-                    abi.encodePacked(block.difficulty, block.number, players)
+                    abi.encodePacked(block.difficulty, block.number, players) // abi.encodePacked local string concat
                 )
             );
     }
