@@ -19,14 +19,14 @@ const web3 = new Web3(provider);
 const deploy = async () => {
   const accounts = await web3.eth.getAccounts();
   console.log(`accounts: ${accounts} len: ${accounts.length}`)
-  // console.log("Attempting to deploy from account", accounts[0]);
+  console.log("Attempting to deploy from account", accounts[0]);
 
-  // const result = await new web3.eth.Contract(abi)
-  //   .deploy({ data: "0x" + evm.bytecode.object })
-  //   .send({ from: accounts[0] });
-  //
-  // console.log("Contract deployed to", result.options.address);
-  // provider.engine.stop();
+  const result = await new web3.eth.Contract(abi)
+    .deploy({ data: "0x" + evm.bytecode.object })
+    .send({ from: accounts[0] });
+  console.log("Contract deployed to", result.options.address);
+  // Contract deployed to: 0xC30CCEc02e106D807D2838CC26F1d142991a59dd
+  provider.engine.stop();
 };
 
 deploy();

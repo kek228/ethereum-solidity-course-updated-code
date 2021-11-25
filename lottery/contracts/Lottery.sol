@@ -50,6 +50,9 @@ contract Lottery {
     }
 
     function pickWinner() public onlyOwner {
+        if(players.length == 0) {
+            return;
+        }
         uint256 index = random() % players.length;
 
         // As of Solidity 0.4.24 at least, `this` is a deprecated way to get the address of the
