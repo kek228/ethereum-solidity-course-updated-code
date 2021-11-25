@@ -6,6 +6,7 @@ contract Inbox {
     // allows you to access the current value of the state variable
     // from outside of the contract (see lines 22 - 28).
     string public message;
+    uint public square_length;
 
     // Note: Removing `public` visibility specifier. Visibility (public / external)
     // is not needed for constructors anymore: To prevent a contract from being
@@ -13,10 +14,15 @@ contract Inbox {
     // for constructors obsolete.
     constructor(string memory initialMessage) {
         message = initialMessage;
+        uint length = bytes(message).length;
+        square_length = length * length;
     }
 
     function setMessage(string memory newMessage) public {
-        message = newMessage;
+        string memory new_msg = string(abi.encodePacked(newMessage, "_prefix"));
+        message = new_msg;
+        uint length = bytes(message).length;
+        square_length = length * length;
     }
 
     // Because we declared the `message` state variable above with

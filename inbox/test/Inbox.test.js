@@ -36,9 +36,12 @@ describe("Inbox", () => {
 
   it("can change the message", async () => {
     const newMsg = "bye";
+    const expected = "bye_prefix";
     await inbox.methods.setMessage(newMsg).send({ from: accounts[0] });
-
+    // only public contract members generate method
     const msg = await inbox.methods.message().call();
-    assert.strictEqual(msg, newMsg);
+    assert.strictEqual(msg, expected);
+    const square_length = await inbox.methods.square_length().call();
+    assert.strictEqual(square_length, (expected.length * expected.length).toString());
   });
 });
