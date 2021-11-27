@@ -14,7 +14,7 @@ contract Inbox {
     // for constructors obsolete.
     constructor(string memory initialMessage) {
         message = initialMessage;
-        uint length = bytes(message).length;
+        uint memory length = bytes(message).length;
         square_length = length * length;
     }
 
