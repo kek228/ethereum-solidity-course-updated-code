@@ -8,7 +8,7 @@ contract CampaignFactory {
         Campaign newCampaign = new Campaign(minimum, msg.sender);
         deployedCampaigns.push(newCampaign);
     }
-
+    // view -> no data will be modified
     function getDeployedCampaigns() public view returns (Campaign[] memory) {
         return deployedCampaigns;
     }
@@ -51,8 +51,8 @@ contract Campaign {
     mapping(uint256 => Request) public requests;
 
     constructor(uint256 minimum, address creator) {
-        manager = creator;
         minimumContribution = minimum;
+        manager = creator;
     }
 
     function contribute() public payable {
@@ -64,11 +64,8 @@ contract Campaign {
         approversCount++;
     }
 
-    function createRequest(
-        string memory description,
-        uint256 value,
-        address payable recipient
-    ) public onlyManager {
+    function createRequest(string memory description, uint256 value, address payable recipient) public onlyManager {
+        // like C++ maps default value returned
         Request storage r = requests[numRequests++];
         r.description = description;
         r.value = value;

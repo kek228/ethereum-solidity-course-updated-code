@@ -33,6 +33,7 @@ beforeEach(async () => {
   });
 
   [campaignAddress] = await factory.methods.getDeployedCampaigns().call();
+  // thats how to get abi in a normal way
   campaign = await new web3.eth.Contract(compiledCampaign.abi, campaignAddress);
 });
 

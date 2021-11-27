@@ -4,14 +4,12 @@ require("dotenv").config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const Web3 = require("web3");
 const compiledFactory = require("./build/CampaignFactory.json");
-const mnemonicPhrase = process.env.ACCOUNT_MNEMONIC;
-const network = process.env.RINKEBY_ENDPOINT;
 
 const provider = new HDWalletProvider({
   mnemonic: {
-    phrase: mnemonicPhrase
+    phrase: ''
   },
-  providerOrUrl: network
+  providerOrUrl: ''
 });
 
 const web3 = new Web3(provider);

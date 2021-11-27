@@ -12,7 +12,7 @@ const campaignPath = path.resolve(__dirname, "contracts", contractFileName);
 const source = fs.readFileSync(campaignPath, "utf8");
 
 /***
- * The recommended way to interface with the Solidity compiler, especially for more
+ * The recommended way to interface with the Solidity compiler, es pecially for more
  * complex and automated setups is the so-called JSON-input-output interface.
  *
  * See https://docs.soliditylang.org/en/v0.8.6/using-the-compiler.html#compiler-input-and-output-json-description
